@@ -1,0 +1,38 @@
+<html>
+<head runat="server">
+    <title>Test Form</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+</head>
+
+<body>
+    <div>
+   <button class="apireq">click me </button>
+    </div>
+    <div>
+        <p><label> First name :</label> <span id="first_name"></span></p>
+   <p><label> Last name :</label> <span id="last_name"></span></p>
+   <p><label> age :</label> <span id="age"></span></p>
+   <p><label> gender : </label> <span id="gender"></span></p>
+    </div>
+    <script type="text/javascript">
+        $('.apireq').click( function() {
+            $.ajax({
+            url: '/api/v2/user-profile/',
+            type:'GET',
+            success: function (data) {
+                      $('#first_name').text( data[1].first_name);
+                      console.log("first name", data[1].first_name)
+                      $('#last_name').text( data[1].last_name);
+                      $('#age').text( data[1].dob);
+                      $('#gender').text( data[1].gender);}
+
+        });
+        });
+    </script>
+</body>
+</html>

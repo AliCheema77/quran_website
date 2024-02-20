@@ -1,0 +1,53 @@
+{#{% load i18n %}#}
+{#{% load account %}#}
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#    <title>{% trans "Confirm E-mail Address" %}</title>#}
+{#</head>#}
+{#<body>#}
+{#<h1>{% trans "Confirm E-mail Address" %}</h1>#}
+{##}
+{#{% if confirmation %}#}
+{##}
+{#    {% user_display confirmation.email_address.user as user_display %}#}
+{##}
+{#    <p>{% blocktrans with confirmation.email_address.email as email %}Please confirm that#}
+{#        <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}#}
+{#        .{% endblocktrans %}</p>#}
+{##}
+{#    <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">#}
+{#        {% csrf_token %}#}
+{#        <button type="submit">{% trans 'Confirm' %}</button>#}
+{#    </form>#}
+{##}
+{#{% else %}#}
+{##}
+{#    {% url 'account_email' as email_url %}#}
+{##}
+{#    <p>{% blocktrans %}This e-mail confirmation link expired or is invalid. Please#}
+{#        <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endblocktrans %}</p>#}
+{##}
+{#{% endif %}#}
+{##}
+{#</body>#}
+{#</html>#}
+{##}
+
+{% load i18n %}
+{% load account %}
+<html lang="US">
+    <head>
+    <title>backend</title>
+    </head>
+    <body>
+        <div>
+            <form method="post" action="{% url 'account_confirm_email' confirmation.key %}" style="margin-top: 10%;">
+                    {% csrf_token %}
+                <h3 align="center">
+                    <button type="submit" class="es-button es-button-1" target="_blank" style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#FFFFFF;font-size:20px;border-style:solid;border-color:#FFA73B;border-width:15px 30px;display:inline-block;background:#FFA73B;border-radius:2px;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;font-weight:normal;font-style:normal;line-height:24px;width:auto;text-align:center">Confirm Now </button>
+                </h3>
+            </form>
+        </div>
+    </body>
+</html>

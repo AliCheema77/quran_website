@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Test Form</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+</head>
+<body>
+<form id="form" runat="server">
+    <label class="clsLabe">Email<sup>*</sup></label><br/>
+    <input type="email" id="email" name="email" class="clsEmail"/><br/>
+    <label class="clsLabe">Password<sup>*</sup></label><br/>
+    <input type="password" id="password" name="password" class="clsPassword"/><br/>
+    <div class="g-recaptcha" data-sitekey="6LdbCSAdAAAAAJtufkpbM0b_tOmNkD3An4u-3S6j"></div>
+    <button id="submit_btn" >Submit</button>
+</form>
+</body>
+
+<script>
+
+        //reCaptch verified
+        document.querySelector('form').addEventListener('submit', function (e) {
+            e.preventDefault()
+            var recaptcha = grecaptcha.getResponse();
+            $.ajax({
+            url: "/api/v2/signup-v2/",
+            type: 'POST',
+            data: {
+                email : $(`#email`).val(),
+                password : $(`#password`).val(),
+                recaptcha : recaptcha
+            },
+            success: function (response) {
+                alert('User is created successfully ')
+                console.log(response)
+            },
+            error: function (response){
+                alert("User not created.. an error occured ", recaptcha)
+            }
+        });
+        })
+        ;
+    </script>
+</html>

@@ -1,0 +1,45 @@
+.radio_button{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.form_container{
+    width: 30%;
+}
+
+.error_messages{
+    color: red;
+}
+
+.component-wrapper {
+    position: relative;
+  }
+
+@media screen and (max-width: 1000px) {
+
+    .form_container{
+        width: 45%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+
+    .form_container{
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+
+    .form_container{
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+
+    .form_container{
+        width: 85%;
+    }
+}
